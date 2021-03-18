@@ -3,7 +3,7 @@ from ebooklib import epub
 from os import sep
 from pathlib import Path
 
-def convert_epub_to_html(path):
+def convert(path):
     if not path.endswith('.epub'):
         raise ValueError('Wrong file type there, buddy')
     html_dir = Path(Path(path).stem)
@@ -25,9 +25,3 @@ def convert_epub_to_html(path):
         with open(html_dir / image.get_name(), 'wb') as f:
             f.write(image.get_content())
     print(f'"{html_dir}" created.')
-
-def example():
-    convert_epub_to_html('data/epub-example.epub')
-
-if __name__ == '__main__':
-    example()

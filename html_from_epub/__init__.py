@@ -1,2 +1,1 @@
-from convert_epub_to_html import convert_epub_to_html
-from convert_epub_to_html import example
+from .html_from_epub import convert, example
