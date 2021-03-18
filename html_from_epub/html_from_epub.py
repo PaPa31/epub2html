@@ -10,7 +10,7 @@ def convert_epub_to_html(path):
     if html_dir.exists():
         print('Directory already exists.')
         while True:
-            confirmation = input(f'Overwrite "{html_dir}"? (y/n) >')
+            confirmation = input(f'Overwrite "{html_dir}"? (y/n) > ')
             if confirmation.lower() == 'n': return
             elif confirmation.lower() == 'y': break
             else: print('Enter "y" for "yes" or "n" for "no"')
@@ -24,6 +24,7 @@ def convert_epub_to_html(path):
     for image in book.get_items_of_type(ebooklib.ITEM_IMAGE):
         with open(html_dir / image.get_name(), 'wb') as f:
             f.write(image.get_content())
+    print(f'"{html_dir}" created.')
 
 def example():
     convert_epub_to_html('data/epub-example.epub')
