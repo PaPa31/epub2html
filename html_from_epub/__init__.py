@@ -1,1 +1,1 @@
-from .html_from_epub import convert, example
+from .html_from_epub import convert

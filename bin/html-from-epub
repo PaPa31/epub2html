@@ -1,0 +1,15 @@
+#!/usr/bin/env python
+
+import argparse
+
+from html_from_epub import html_from_epub
+
+parser = argparse.ArgumentParser(description='Extract html files from epub file')
+
+parser.add_argument('Path',
+                    metavar='path',
+                    type=str,
+                    help='the path to epub file')
+
+args = parser.parse_args()
+html_from_epub.convert(args.Path)

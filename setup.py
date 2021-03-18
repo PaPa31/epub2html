@@ -5,7 +5,7 @@ with open('README.md', 'r') as fh:
 
 setuptools.setup(
     name='html_from_epub',
-    version='0.1.3',
+    version='0.2.0',
     author='Casper Lehmann',
     author_email='casperlehmann@gmail.com',
     description='Extract html library from Epub file',
@@ -22,4 +22,5 @@ setuptools.setup(
     install_requires=[
         'EbookLib',
     ],
+    scripts =['bin/html-from-epub'],
 )
