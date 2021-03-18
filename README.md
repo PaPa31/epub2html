@@ -10,17 +10,17 @@ $ pip install html_from_epub
 
 ## Use
 
-As command line tool:
+Command line tool script will install along with Python package.
 
-``` text
-To-do
+``` bash
+$ html-from-epub path_to_file.epub
 ```
 
 Use in code:
 
 ``` python
->>> from html_from_epub import html_from_epub
->>> html_from_epub('path_to_file.epub')
+>>> from html_from_epub import convert
+>>> convert('path_to_file.epub')
 ```
 
 ## Contribute

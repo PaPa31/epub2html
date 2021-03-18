@@ -22,5 +22,5 @@ setuptools.setup(
     install_requires=[
         'EbookLib',
     ],
-    scripts =['bin/html-from-epub'],
+    scripts = ['bin/html-from-epub'],
 )
