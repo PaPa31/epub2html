@@ -16,6 +16,7 @@ def convert(path):
             else: print('Enter "y" for "yes" or "n" for "no"')
     html_dir.mkdir(exist_ok=True)
     book = epub.read_epub(path)
+    print(f'hi')
     chapters = []
     for item in book.get_items():
         if item.get_type() == ebooklib.ITEM_DOCUMENT:
