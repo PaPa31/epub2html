@@ -17,7 +17,7 @@ def convert(path):
     html_dir.mkdir(exist_ok=True)
     book = epub.read_epub(path)
     for item in book.get_items():
-        if item.get_type() == ebooklib.ITEM_DOCUMENT:
+        if item.get_type() != ebooklib.ITEM_IMAGE:
             with open(html_dir / item.get_name(), 'wb') as f:
                 f.write(item.get_content())
     for image in book.get_items_of_type(ebooklib.ITEM_IMAGE):
