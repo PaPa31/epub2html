@@ -1,6 +1,6 @@
 import ebooklib
 from ebooklib import epub
-from os import sep
+import os
 from pathlib import Path
 
 def convert(path):
@@ -16,13 +16,13 @@ def convert(path):
             else: print('Enter "y" for "yes" or "n" for "no"')
     html_dir.mkdir(exist_ok=True)
     book = epub.read_epub(path)
-    print(f'hi')
-    chapters = []
     for item in book.get_items():
         if item.get_type() == ebooklib.ITEM_DOCUMENT:
             with open(html_dir / item.get_name(), 'wb') as f:
                 f.write(item.get_content())
     for image in book.get_items_of_type(ebooklib.ITEM_IMAGE):
-        with open(html_dir / image.get_name(), 'wb') as f:
+        img = html_dir / image.get_name()
+        os.makedirs(os.path.dirname(img), exist_ok=True)
+        with open(img, 'wb') as f:
             f.write(image.get_content())
     print(f'"{html_dir}" created.')
