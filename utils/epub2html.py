@@ -2,6 +2,7 @@ import ebooklib
 from ebooklib import epub
 import os
 from pathlib import Path
+import html
 
 def convert(path):
     if not path.endswith('.epub'):
@@ -17,19 +18,18 @@ def convert(path):
     html_dir.mkdir(exist_ok=True)
     book = epub.read_epub(path)
     for item in book.get_items():
+        doc = html_dir / item.get_name()
+        os.makedirs(os.path.dirname(doc), exist_ok=True)
+        content = item.get_content()
         if item.get_type() != ebooklib.ITEM_IMAGE:
             if item.get_type() == ebooklib.ITEM_DOCUMENT:
-                with open(html_dir / item.get_name(), 'w') as f:
-                    content = item.get_content().decode()
-                    content = content.replace('<head/>', '<head><script type="text/javascript" src="/js-and-css/js/inject.js"></script><script type="text/javascript" src="file:///media/storage418Gb/Users/parsh/Documents/Books/js-and-css/js/inject.js"></script><script type="text/javascript" src="file:///F:/Users/parsh/Documents/Books/js-and-css/js/inject.js"></script></head>')
-                    f.write(content)
+                with open(doc, 'w') as f:
+                    content = content.decode().replace('<head/>', '<head><script type="text/javascript" src="/js-and-css/js/inject.js"></script><script type="text/javascript" src="file:///media/storage418Gb/Users/parsh/Documents/Books/js-and-css/js/inject.js"></script><script type="text/javascript" src="file:///F:/Users/parsh/Documents/Books/js-and-css/js/inject.js"></script></head>')
+                    f.write(html.unescape(content))
             else:
-                with open(html_dir / item.get_name(), 'wb') as f:
-                    content = item.get_content()
+                with open(doc, 'wb') as f:
                     f.write(content)
-    for image in book.get_items_of_type(ebooklib.ITEM_IMAGE):
-        img = html_dir / image.get_name()
-        os.makedirs(os.path.dirname(img), exist_ok=True)
-        with open(img, 'wb') as f:
-            f.write(image.get_content())
+        else:
+            with open(doc, 'wb') as f:
+                f.write(content)
     print(f'"{html_dir}" created.')
