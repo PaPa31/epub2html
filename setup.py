@@ -4,7 +4,7 @@ with open('README.md', 'r') as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name='html2epub',
+    name='epub2html',
     version='0.2.0',
     author='Casper Lehmann',
     author_email='',

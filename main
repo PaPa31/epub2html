@@ -2,7 +2,7 @@
 
 import argparse
 
-from utils.html2epub import convert
+from utils.epub2html import convert
 
 parser = argparse.ArgumentParser(description='Extract html files from epub file')
 

@@ -1,1 +1,1 @@
-from .html2epub import convert
+from .epub2html import convert

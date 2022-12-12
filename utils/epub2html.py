@@ -18,8 +18,15 @@ def convert(path):
     book = epub.read_epub(path)
     for item in book.get_items():
         if item.get_type() != ebooklib.ITEM_IMAGE:
-            with open(html_dir / item.get_name(), 'wb') as f:
-                f.write(item.get_content())
+            if item.get_type() == ebooklib.ITEM_DOCUMENT:
+                with open(html_dir / item.get_name(), 'w') as f:
+                    content = item.get_content().decode()
+                    content = content.replace('<head/>', '<head><script type="text/javascript" src="/js-and-css/js/inject.js"></script><script type="text/javascript" src="file:///media/storage418Gb/Users/parsh/Documents/Books/js-and-css/js/inject.js"></script><script type="text/javascript" src="file:///F:/Users/parsh/Documents/Books/js-and-css/js/inject.js"></script></head>')
+                    f.write(content)
+            else:
+                with open(html_dir / item.get_name(), 'wb') as f:
+                    content = item.get_content()
+                    f.write(content)
     for image in book.get_items_of_type(ebooklib.ITEM_IMAGE):
         img = html_dir / image.get_name()
         os.makedirs(os.path.dirname(img), exist_ok=True)
