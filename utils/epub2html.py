@@ -3,6 +3,7 @@ from ebooklib import epub
 import os
 from pathlib import Path
 import html
+import re
 
 def convert(path):
     if not path.endswith('.epub'):
@@ -24,7 +25,9 @@ def convert(path):
         if item.get_type() != ebooklib.ITEM_IMAGE:
             if item.get_type() == ebooklib.ITEM_DOCUMENT:
                 with open(doc, 'w') as f:
-                    content = content.decode().replace('<head/>', '<head><script type="text/javascript" src="/js-and-css/js/inject.js"></script><script type="text/javascript" src="file:///media/storage418Gb/Users/parsh/Documents/Books/js-and-css/js/inject.js"></script><script type="text/javascript" src="file:///F:/Users/parsh/Documents/Books/js-and-css/js/inject.js"></script></head>')
+                    title = os.path.splitext(item.get_name())[0]
+                    content = content.decode()
+                    content = re.sub(r'<head/>', r'<head><title>%s</title><script type="text/javascript" src="/js-and-css/js/inject.js"></script><script type="text/javascript" src="file:///media/storage418Gb/Users/parsh/Documents/Books/js-and-css/js/inject.js"></script><script type="text/javascript" src="file:///F:/Users/parsh/Documents/Books/js-and-css/js/inject.js"></script></head>'%title, content)
                     f.write(html.unescape(content))
             else:
                 with open(doc, 'wb') as f:
