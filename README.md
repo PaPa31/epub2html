@@ -1,34 +1,35 @@
-# HTML from Epub
+# "Convert" EPUB to HTML
 
 Extract html library from .epub file.
 
+Inspired by [html-from-epub](https://github.com/casperlehmann/html-from-epub)
+
 ## Install
 
-``` bash
-$ pip install html_from_epub
+```shell
+$ git clone git@github.com:PaPa31/epub2html.git
 ```
 
-## Use
+## Usage
 
-Command line tool script will install along with Python package.
+Run via python:
 
-``` bash
-$ html-from-epub path_to_file.epub
+```shell
+$ python /path/to/epub2html file.epub
 ```
 
-Use in code:
+or make bash alias...
 
-``` python
->>> from html_from_epub import convert
->>> convert('path_to_file.epub')
+### Bash alias
+
+Add to the end of `.bashrc`:
+
+```bash
+epub2html='python /path/to/epub2html'
 ```
 
-## Contribute
+... and, after restart your terminal, run:
 
-Go ahead:
-
-``` bash
-$ git clone https://github.com/casperlehmann/html_from_epub.git
-$ cd html_from_epub
-$ pip install -r requirements.txt
+```shell
+$ epub2html file.epub
 ```
