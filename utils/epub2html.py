@@ -45,7 +45,7 @@ def convert(path):
                     else:
                         a3 = '<a href="' + arr[jArr - 1] + '">&lt; Previous</a><span> | </span>' + aCont + '<span> | </span><a href="' + arr[jArr + 1] + '">Next &gt;</a>'
                     jArr = jArr + 1
-                    content = re.sub(r'<body>', r'<body><nav id="top-nav">%s</nav>'%a3, content)
+                    content = re.sub(r'<body>', r'<body><header>%s</header>'%a3, content)
                     f.write(content)
             else:
                 with open(doc, 'wb') as f:
