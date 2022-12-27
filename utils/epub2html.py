@@ -46,6 +46,10 @@ def convert(path):
                         a3 = '<a href="' + arr[jArr - 1] + '">&lt; Previous</a><span> | </span>' + aCont + '<span> | </span><a href="' + arr[jArr + 1] + '">Next &gt;</a>'
                     jArr = jArr + 1
                     content = re.sub(r'<body>', r'<body><header>%s</header>'%a3, content)
+                    if title == 'toc01':
+                        print('toc01')
+                        content = content.replace('</head>', f'<link href="/js-and-css/css/collapsible-style.css" rel="stylesheet" type="text/css"><link href="file:///media/storage418Gb/Users/parsh/Documents/Books/js-and-css/css/collapsible-style.css" rel="stylesheet" type="text/css"><link href="file:///F:/Users/parsh/Documents/Books/js-and-css/css/collapsible-style.css" rel="stylesheet" type="text/css"></head>')
+                        content = content.replace('</body>', f'<script type="text/javascript" src="/js-and-css/js/collapsible-script.js"></script><script type="text/javascript" src="file:///media/storage418Gb/Users/parsh/Documents/Books/js-and-css/js/collapsible-script.js"></script><script type="text/javascript" src="file:///F:/Users/parsh/Documents/Books/js-and-css/js/collapsible-script.js"></script></body>')
                     f.write(content)
             else:
                 with open(doc, 'wb') as f:
