@@ -6,7 +6,7 @@ with open('README.md', 'r') as fh:
 setuptools.setup(
     name='epub2html',
     version='0.2.0',
-    author='Casper Lehmann',
+    author='papa31',
     author_email='',
     description='Extract html library from Epub file',
     long_description=long_description,
